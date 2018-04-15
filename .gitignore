@@ -33,3 +33,4 @@ yarn-debug.log*
 *.iml
 .DS_Store
 /vendor/bundle
+.env
