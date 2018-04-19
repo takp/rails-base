@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_19_125055) do
+ActiveRecord::Schema.define(version: 2018_04_19_125801) do
+
+  create_table "admin_user_roles", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "admin_user_id", default: 0, null: false, unsigned: true
+    t.string "role", default: "", null: false
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["admin_user_id"], name: "index_admin_user_roles_on_admin_user_id"
+    t.index ["role"], name: "index_admin_user_roles_on_role"
+  end
 
   create_table "admin_users", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
