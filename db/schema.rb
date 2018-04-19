@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_17_165104) do
+ActiveRecord::Schema.define(version: 2018_04_19_124642) do
 
   create_table "admin_users", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 2018_04_17_165104) do
     t.index ["email"], name: "index_admin_users_on_email"
     t.index ["name"], name: "index_admin_users_on_name"
     t.index ["profile_image_id"], name: "index_admin_users_on_profile_image_id"
+  end
+
+  create_table "users", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "password", default: "", null: false
+    t.bigint "profile_image_id", default: 0, null: false, unsigned: true
+    t.string "remember_token", limit: 100
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["profile_image_id"], name: "index_users_on_profile_image_id"
   end
 
 end
