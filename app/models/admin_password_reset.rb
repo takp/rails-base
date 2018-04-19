@@ -1,0 +1,2 @@
+class AdminPasswordReset < ApplicationRecord
+end

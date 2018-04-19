@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_19_125801) do
+ActiveRecord::Schema.define(version: 2018_04_19_130229) do
+
+  create_table "admin_password_resets", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "token", default: "", null: false
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["email"], name: "index_admin_password_resets_on_email"
+    t.index ["token"], name: "index_admin_password_resets_on_token"
+  end
 
   create_table "admin_user_roles", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "admin_user_id", default: 0, null: false, unsigned: true
