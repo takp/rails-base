@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    name "MyString"
-    email "MyString"
+    name Faker::Name.name
+    email Faker::Internet.email
     password "MyString"
     profile_image_id 1
     remember_token "MyString"
